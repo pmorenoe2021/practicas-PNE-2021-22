@@ -14,5 +14,5 @@ dna = input("Introduce the seq: ")
 print("total length:", len(dna))
 for k, v in count_bases(dna).items():
     print(k + ":", v)
-#we put the + between k and : because in the output there isnt a space,
+#we put the + between k and : because in the output there isnt a space.
 # so since they are both strings we can concatenate them without doing str(k), but since v is an int we need a comma
