@@ -8,7 +8,7 @@ def fib(n):
     elif n == 2:
         return n2
     else:
-        for i in range(2, n + 1):
+        for i in range(2, n):
             num = n1 + n2
             n1 = n2
             n2 = num
