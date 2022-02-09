@@ -7,16 +7,19 @@ def valid_filename():
     while not exit:
         filename = input("NAME OF THE FILE : ")
         try:
-            f = open(filename, "r")
+            f = open("./session4/" + filename + ".txt", "r")
             exit = True
             return filename
         except FileNotFoundError:
             print("file does not exist")
 
 def seq_read_fasta(filename):
-    seq = open(filename, "r").read()
+    seq = open("./session4/" + filename + ".txt", "r").read()
     seq = seq[seq.find("\n"):].replace("\n", "")
     return seq
+
+def seq_count_base(seq, base):
+
 
 
 
