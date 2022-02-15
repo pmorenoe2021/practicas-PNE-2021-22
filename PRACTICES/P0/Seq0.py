@@ -60,3 +60,41 @@ def seq_reverse(seq): #6
     return frag, rev
 
 
+def seq_complement(seq): #7
+    n = 20
+    comp = []
+    seq = open("./session4/" + seq + ".txt", "r").read()
+    seq = seq[seq.find("\n") + 1:].replace("\n", "")
+    frag = seq[:n + 1]
+    for b in frag:
+        if b == "A":
+            comp.append("T")
+        elif b == "T":
+            comp.append("A")
+        elif b == "C":
+            comp.append("G")
+        elif b == "G":
+            comp.append("C")
+
+    return frag, comp
+
+def base_count(s):#8
+    s = open("./session4/" + s + ".txt", "r").read()
+    s = s[s.find("\n") + 1:].replace("\n", "")
+    let_a = 0
+    let_c = 0
+    let_g = 0
+    let_t = 0
+    for l in s:
+        if l.upper() == "A":
+            let_a += 1
+        elif l.upper() == "C":
+            let_c += 1
+        elif l.upper() == "G":
+            let_g += 1
+        elif l.upper() == "T":
+            let_t += 1
+    bases = {"A": let_a, "C": let_c, "G": let_g, "T": let_t}
+    return bases
+
+
