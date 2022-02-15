@@ -7,5 +7,5 @@ for s in l:
         if value > biggest:
             biggest = value
             x = key
-print("Gene", s, ": Most frequent Base:", x)
-# solo estas calculando fxn!!!!
+    print("Gene", s, ": Most frequent Base:", x)
+# solo estas calculando fxn!
