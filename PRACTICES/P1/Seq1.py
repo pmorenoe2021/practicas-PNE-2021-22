@@ -10,7 +10,7 @@ class Seq:
 
         elif not self.valid_seq():
             self.strbases = "ERROR"
-            print("...")
+            print("INVALID Seq!")
 
         else:
             print("New sequence created!")
