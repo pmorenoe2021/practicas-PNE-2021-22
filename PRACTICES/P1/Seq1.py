@@ -50,4 +50,19 @@ class Seq:
         """Calculate the length of the sequence"""
         return len(self.strbases)
 
+    def count_base(self):
+        let_a = 0
+        let_c = 0
+        let_g = 0
+        let_t = 0
+        for l in self:
+            if l.upper() == "A":
+                let_a += 1
+            elif l.upper() == "C":
+                let_c += 1
+            elif l.upper() == "G":
+                let_g += 1
+            elif l.upper() == "T":
+                let_t += 1
+        return let_a, let_c, let_g, let_t
 
