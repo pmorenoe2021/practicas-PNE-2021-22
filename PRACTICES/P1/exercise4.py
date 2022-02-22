@@ -1,13 +1,10 @@
 from Seq1 import Seq
 # -- Creating a Null sequence
-s1 =["", "ACTGA", "Invalid sequence"]
-sequences = []
+s1 = Seq()
+s2 = Seq("ACTGA")
+s3 = Seq("Invalid sequence")
 
-for st in s_l:
-    if st == "":
-        sequences.append(Seq())
-    else:
-        sequences.append(Seq(st))
+print(f"Sequence 1 :(Length = {s1.len()})", s1)
+print(f"Sequence 2 :(Length = {s2.len()})", s2)
+print(f"Sequence 3 :(Length = {s3.len()})", s3)
 
-for i in range(0, len(sequences)):
-    print(f"Sequence {str(i + 1)}:(Length = {st.len()}) {sequences[i]}")

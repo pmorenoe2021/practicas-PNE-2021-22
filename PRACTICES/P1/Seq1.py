@@ -48,21 +48,20 @@ class Seq:
 
     def len(self):
         """Calculate the length of the sequence"""
-        return len(self.strbases)
+        result = 0
+        if self.strbases == "ERROR" or self.strbases == "NULL":
+            result = 0
+        else:
+            result = len(self.strbases)
+        return result
 
-    def count_base(self):
-        let_a = 0
-        let_c = 0
-        let_g = 0
-        let_t = 0
-        for l in self:
-            if l.upper() == "A":
-                let_a += 1
-            elif l.upper() == "C":
-                let_c += 1
-            elif l.upper() == "G":
-                let_g += 1
-            elif l.upper() == "T":
-                let_t += 1
-        return let_a, let_c, let_g, let_t
+    def count_base(self, list_bases):
+        count = 0
+        if self.strbases == "ERROR" or self.strbases == "NULL":
+            count = 0
+        else:
+            for s in self.strbases:
+                if s == list_bases:
+                    count += 1
+        return count
 
