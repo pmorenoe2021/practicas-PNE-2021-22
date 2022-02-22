@@ -1,6 +1,6 @@
 from Seq1 import Seq
 # -- Creating a Null sequence
-s_l =["", "ACTGA", "Invalid sequence"]
+s1 =["", "ACTGA", "Invalid sequence"]
 sequences = []
 
 for st in s_l:
