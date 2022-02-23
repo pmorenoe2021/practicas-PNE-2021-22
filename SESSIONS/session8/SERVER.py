@@ -1,8 +1,8 @@
 import socket
 
 # Configure the Server's IP and PORT
-PORT = 8081
-IP = "192.168.1.36"
+PORT = 21000
+IP = "212.128.253.64"
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections
@@ -13,11 +13,11 @@ serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     serversocket.bind((IP, PORT))
     # become a server socket
-    # MAX_OPEN_REQUESTS connect requests before refusing outside connections
+    # MAX_OPEN_REQUESTS connect req
+    #         # accept connecuests before refusing outside connections
     serversocket.listen(MAX_OPEN_REQUESTS)
 
-    while True:
-        # accept connections from outside
+    while True:tions from outside
         print("Waiting for connections at {}, {} ".format(IP, PORT))
         (clientsocket, address) = serversocket.accept()
 

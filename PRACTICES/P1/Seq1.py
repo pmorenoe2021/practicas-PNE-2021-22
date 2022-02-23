@@ -65,3 +65,8 @@ class Seq:
                     count += 1
         return count
 
+    def seq_read_fasta(self, filename):
+        f = open("./sequences/" + filename + ".txt", "r").read()
+        self.strbases = seq = f[f.find("\n"):].replace("\n", "")
+        #this is a method not function so it is not neccessary to return something
+        # bc we are modifiying attributes of the class
