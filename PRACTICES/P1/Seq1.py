@@ -118,3 +118,22 @@ class Seq:
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
         #this is a method not function so it is not neccessary to return something
         # bc we are modifiying attributes of the class
+
+    def base_count(sELF):  # TERMINAR
+        s = open("./session4/" + s + ".txt", "r").read()
+        s = s[s.find("\n") + 1:].replace("\n", "")
+        let_a = 0
+        let_c = 0
+        let_g = 0
+        let_t = 0
+        for l in s:
+            if l.upper() == "A":
+                let_a += 1
+            elif l.upper() == "C":
+                let_c += 1
+            elif l.upper() == "G":
+                let_g += 1
+            elif l.upper() == "T":
+                let_t += 1
+        bases = {"A": let_a, "C": let_c, "G": let_g, "T": let_t}
+        return bases

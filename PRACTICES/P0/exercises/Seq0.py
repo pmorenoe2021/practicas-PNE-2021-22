@@ -97,9 +97,9 @@ def base_count(s):#8
     bases = {"A": let_a, "C": let_c, "G": let_g, "T": let_t}
     return bases
 
-    def read_fasta(self, filename):
-        f = open("./sequences/" + filename + ".txt", "r").read()
-        self.strbases = seq = f[f.find("\n"):].replace("\n", "")
+    #def read_fasta(self, filename):
+     #   f = open("./sequences/" + filename + ".txt", "r").read()
+      #  self.strbases = seq = f[f.find("\n"):].replace("\n", "")
         #this is a method not function so it is not neccessary to return something
         # bc we are modifiying attributes of the class
 
