@@ -1,4 +1,3 @@
-from PRACTICES.P0.Seq0 import seq_count_base
 from Seq1 import Seq
 # -- Creating a Null sequence
 s1 = Seq()
