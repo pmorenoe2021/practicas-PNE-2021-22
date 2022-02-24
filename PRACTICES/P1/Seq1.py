@@ -119,9 +119,9 @@ class Seq:
         #this is a method not function so it is not neccessary to return something
         # bc we are modifiying attributes of the class
 
-    def base_count(sELF):  # TERMINAR
-        s = open("./session4/" + s + ".txt", "r").read()
-        s = s[s.find("\n") + 1:].replace("\n", "")
+    def base_count(self, seq):  # TERMINAR
+        seq = open("./session4/" + seq + ".txt", "r").read()
+        seq = seq[seq.find("\n") + 1:].replace("\n", "")
         let_a = 0
         let_c = 0
         let_g = 0
