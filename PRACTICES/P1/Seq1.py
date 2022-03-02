@@ -107,26 +107,26 @@ class Seq:
         while not exit:
             filename = input("NAME OF THE FILE : ")
             try:
-                f = open("./session4/" + filename + ".txt", "r")
+                f = open("./sequences/" + filename + ".txt", "r")
                 exit = True
                 return filename
             except FileNotFoundError:
                 print("file does not exist")
 
     def read_fasta(self, filename):
-        f = open("../session4/" + filename + ".txt", "r").read()
+        f = open("./sequences/" + filename + ".txt", "r").read()
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
         #this is a method not function so it is not neccessary to return something
         # bc we are modifiying attributes of the class
 
     def base_count(self, seq):  # TERMINAR
-        seq = open("./session4/" + seq + ".txt", "r").read()
+        seq = open("./sequences/" + seq + ".txt", "r").read()
         seq = seq[seq.find("\n") + 1:].replace("\n", "")
         let_a = 0
         let_c = 0
         let_g = 0
         let_t = 0
-        for l in s:
+        for l in seq:
             if l.upper() == "A":
                 let_a += 1
             elif l.upper() == "C":
