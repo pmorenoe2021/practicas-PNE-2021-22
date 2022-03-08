@@ -12,7 +12,7 @@ IP = "212.128.253.64"
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # establish the connection to the Server (IP, PORT)
-s.connect((IP, PORT))
+s.connect((IP, PORT))#i want to connect with someone that has this data. you are specifying the dta of the server
 
 # Send data. No strings can be send, only bytes
 # It necesary to encode the string into bytes
