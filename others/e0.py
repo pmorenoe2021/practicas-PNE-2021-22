@@ -24,6 +24,7 @@ for seq in l:
     filename = seq + ".txt"
     sequence = P0.seq_read_fasta(FOLDER + filename)
     print(f"Gene {seq} ---> Length: {P0.seq_len(sequence)}")
+print( )
 
 
 print("-----| Exercise 4 |------")

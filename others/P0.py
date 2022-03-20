@@ -18,6 +18,8 @@ def seq_read_fasta(filename):  # 3
     return sequence
 
 
+
+
 def seq_count_base(seq, base):
     base = ["A", "C", "T", "G"]
     ca = 0

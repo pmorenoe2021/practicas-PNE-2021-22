@@ -1,5 +1,6 @@
 class Seq:
     """A class for representing sequences"""
+
     def __init__(self, strbases="NULL"):
         self.strbases = strbases
 
@@ -13,7 +14,6 @@ class Seq:
             else:
                 print("New sequence created!")
 
-
     def __str__(self):
         return self.strbases
 
@@ -24,7 +24,7 @@ class Seq:
             result = len(self.strbases)
         return result
 
-    def count_bases(self): #5
+    def count_bases(self):  # 5
         ca = 0
         ct = 0
         cc = 0
@@ -41,8 +41,7 @@ class Seq:
 
         return f"A:{ca}, T:{ct}, C:{cc}, G:{cg}, "
 
-
-    def count(self):#6
+    def count(self):  # 6
         bases = {"A": 0, "C": 0, "T": 0, "G": 0}
         for e in self.strbases:
             if e in bases:
@@ -57,7 +56,7 @@ class Seq:
             rev = "ERROR"
         return rev
 
-    def complement(self):#8
+    def complement(self):  # 8
         comp = ""
         if self.strbases == "NULL":
             comp = "NULL"
@@ -89,16 +88,14 @@ class Seq:
         f = open("./sequences/" + filename + ".txt", "r").read()
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
 
-
     def most_freq_base(self, seq):
-        d = seq.count()
+        f = open("./sequences/" + seq + ".txt", "r").read()
+        self.strbases = seq = f[f.find("\n"):].replace("\n", "")
         max_k = None
         max_v = 0
+        d = self.count()
         for k, v in d.items():
             if v >= max_v:
                 max_k = k
                 max_v = v
         return max_k
-
-
-
