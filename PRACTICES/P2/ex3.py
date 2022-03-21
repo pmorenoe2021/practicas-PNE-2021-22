@@ -1,11 +1,11 @@
 from Client0 import Client
 
 PRACTICE = 2
-EXERCISE = 1
+EXERCISE = 3
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
-IP = "127.0.0.1"
+IP = "localhost"
 PORT = 8000
 
 c = Client(IP, PORT)

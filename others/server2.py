@@ -1,8 +1,8 @@
 import socket
-import termcolor
+
 # Configure the Server's IP and PORT
-IP = "127.0.0.1"
-PORT = 8000
+PORT = 8081
+IP = "localhost"
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections
@@ -13,11 +13,11 @@ serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
     serversocket.bind((IP, PORT))
     # become a server socket
-    # MAX_OPEN_REQUESTS connect req
-    #         # accept connecuests before refusing outside connections
+    # MAX_OPEN_REQUESTS connect requests before refusing outside connections
     serversocket.listen(MAX_OPEN_REQUESTS)
 
     while True:
+        # accept connections from outside
         print("Waiting for connections at {}, {} ".format(IP, PORT))
         (clientsocket, address) = serversocket.accept()
 
@@ -29,11 +29,10 @@ try:
 
         # Read the message from the client, if any
         msg = clientsocket.recv(2048).decode("utf-8")
-        termcolor.cprint(msg , "cyan")
-        print("To server: {}".format(msg))
+        print("Message from client: {}".format(msg))
 
         # Send the messag
-        message = "From server: Hello from the teachers server"
+        message = "Hello from the teacher's server"
         send_bytes = str.encode(message)
         # We must write bytes, not a string
         clientsocket.send(send_bytes)
