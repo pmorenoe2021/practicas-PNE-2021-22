@@ -33,7 +33,7 @@ try:
             sequence_number = int(slices[1])
             sequence = genes[sequence_number]
             seq = Seq()
-            filename = os.path.join("..", "..", "Genes", f"{sequence}\n")
+            filename = os.path.join("..", "..", "Genes", f"{sequence}.txt")
             seq.read_fasta(filename)
             response = f"{seq}\n"
             print(response)
@@ -56,7 +56,7 @@ try:
         elif command == "GENE":
             bases = slices[1]
             sequence = Seq(bases)
-            filename = os.path.join("..", "Genes", f"{bases}.txt")
+            filename = os.path.join("..","..", "Genes", f"{bases}.txt")
             seq.read_fasta(filename)
             response = f" {sequence}\n"
 

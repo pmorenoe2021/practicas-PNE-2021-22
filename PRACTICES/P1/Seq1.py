@@ -73,8 +73,3 @@ class Seq:
         for line in body:
             self.bases += line
         return
-
-
-
-
-

@@ -1,9 +1,6 @@
 class Seq:
-    """A class for representing Genes"""
 
     def __init__(self, strbases="NULL"):
-        # Initialize the sequence with the value
-        # passed as argument when creating the object
         self.strbases = strbases
         if self.strbases == "NULL":
             print("NULL se created")
@@ -125,10 +122,8 @@ class Seq:
         return bases
 
     def info(self):
-        result = f"Sequence: {self.bases}\n"
-        result  += f"Total length :{self.len()}\n"
-        for base, count in self.count().items():
+        result = f"Sequence: {self.strbases}\n"
+        result += f"Total length :{self.len()}\n"
+        for base, count in self.seq_count().items():
             result += f"{base}:{count}({((count * 100) / self.len()):.1f}% )"
         return result
-
-
