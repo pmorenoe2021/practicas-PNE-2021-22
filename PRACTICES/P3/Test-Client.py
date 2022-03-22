@@ -29,3 +29,4 @@ print()
 for gene in GENES:
     c.debug_talk(f"GENE {gene}")
     print()
+
