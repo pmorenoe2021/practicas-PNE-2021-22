@@ -33,7 +33,7 @@ try:
             sequence_number = int(slices[1])
             sequence = genes[sequence_number]
             seq = Seq()
-            filename = os.path.join("..", "Genes", f"{sequence}\n")
+            filename = os.path.join("..", "..", "Genes", f"{sequence}\n")
             seq.read_fasta(filename)
             response = f"{seq}\n"
             print(response)
