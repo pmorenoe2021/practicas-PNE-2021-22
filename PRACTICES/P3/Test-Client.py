@@ -1,7 +1,7 @@
 from seq_client import Client
 
 IP = "localhost"
-PORT = 8081
+PORT = 8080
 BASES = "ACCTTGG"
 GENES = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
 

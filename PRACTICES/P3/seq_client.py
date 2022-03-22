@@ -1,19 +1,20 @@
-
 class Client:
-    def __init__(self, ip, port):
-        self.ip = ip
-        self.port = port
+    def __init__(self, server_ip, server_port):
+        self.server_ip = server_ip
+        self.server_port = server_port
 
     def __str__(self):
-        return f"Connection to SERVER at {self.ip}, PORT: {self.port}"
+        return f"Connection to SERVER at {self.server_ip}, PORT: {self.server_port}"
 
     def ping(self):
         print("OK")
 
     def talk(self, msg):
         import socket
+
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client_socket.connect((self.ip, self.port))
+        client_socket.connect((self.server_ip, self.server_port))
+
         msg_bytes = str.encode(msg)
         client_socket.send(msg_bytes)
 
@@ -27,7 +28,7 @@ class Client:
         import socket
         import termcolor
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        client_socket.connect((self.ip, self.port))
+        client_socket.connect((self.server_ip, self.server_port))
 
         print("To Server: ", end="")
         termcolor.cprint(msg, "blue")
@@ -43,23 +44,12 @@ class Client:
 
         return response
 
-
-    def valid_filename(self):
-        exit = False
-        while not exit:
-            filename = input("NAME OF THE FILE : ")
-            try:
-                f = open("./Genes/" + filename + ".txt", "r")
-                exit = True
-                return filename
-            except FileNotFoundError:
-                print("file does not exist")
-
-    def get_gene(self, filename):
-        f = open("./Genes/" + filename + ".txt", "r").read()
-        gene = f[f.find("\n"):].replace("\n", "")
-        return gene
-
-
-
-
+    def read_fasta(self, filename):
+        from pathlib import Path
+        file_contents = Path(filename).read_text()
+        lines = file_contents.splitlines()
+        body = lines[1:]
+        self.bases = ""
+        for line in body:
+            self.bases += line
+        return

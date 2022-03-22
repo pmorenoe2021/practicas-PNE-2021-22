@@ -4,7 +4,7 @@ import os  # operative system
 from Seq1 import Seq
 
 IP = "localhost"
-PORT = 8081
+PORT = 8080
 genes = ["U5", "ADA", "FRAT1", "RNU6_269P", "FXN"]
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
