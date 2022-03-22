@@ -7,7 +7,7 @@ print( )
 
 
 print("-----| Exercise 2 |------")
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 filename = input("File´s name: ")
 print(f"DNA file: {filename}")
 sequence = P0.seq_read_fasta(FOLDER + filename)
@@ -17,7 +17,7 @@ print()
 
 
 print("-----| Exercise 3 |------")
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 l = ["U5", "ADA", "FXN", "FRAT1"]
 
 for seq in l:
@@ -28,7 +28,7 @@ print( )
 
 
 print("-----| Exercise 4 |------")
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 l = ["U5", "ADA", "FXN", "FRAT1"]
 bases = ["A", "C", "T", "G"]
 
@@ -44,7 +44,7 @@ print()
 
 
 print("-----| Exercise 5 |------")
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 l = ["U5", "ADA", "FXN", "FRAT1"]
 for seq in l:
     filename = seq + ".txt"
@@ -56,7 +56,7 @@ print()
 
 print("-----| Exercise 6 |------")
 seq = "U5"
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 filename = seq + ".txt"
 sequence = P0.seq_read_fasta(FOLDER + filename)
 
@@ -68,7 +68,7 @@ print()
 
 print("-----| Exercise 7 |------")
 gene = "U5"
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 filename = gene + ".txt"
 
 sequence = P0.seq_read_fasta(FOLDER + filename)
@@ -80,7 +80,7 @@ print()
 
 
 print("-----| Exercise 8 |------")
-FOLDER = "./sequences/"
+FOLDER = "./Genes/"
 genes = ["U5", "ADA", "FXN", "FRAT1"]
 
 for seq in genes:

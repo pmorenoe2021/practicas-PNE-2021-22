@@ -1,5 +1,5 @@
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
     def __init__(self):
         print("New sequence created!")
 
@@ -10,7 +10,7 @@ s2 = Seq()
 print("Testing...")
 
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
     def __init__(self):
         print("New sequence created!")
 
@@ -22,7 +22,7 @@ s2 = Seq()
 print("Testing...")
 
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
     def __init__(self, strbases):
 
         # Initialize the sequence with the value
@@ -37,7 +37,7 @@ s1 = Seq("AGTACACTGGT")
 s2 = Seq("CGTAAC")
 
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
 
     def __init__(self, strbases):
 
@@ -64,7 +64,7 @@ print(f"Sequence 2: {s2}")
 print("Testing....")
 
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
 
     def __init__(self, strbases):
 

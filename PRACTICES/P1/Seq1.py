@@ -1,5 +1,5 @@
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
 
     def __init__(self, strbases ="NULL"):
         # Initialize the sequence with the value
@@ -16,7 +16,6 @@ class Seq:
             print("New sequence created!")
 
 
-    # this makes sequence become a normal argument
     @staticmethod
     def valid_seq2(sequence):
         valid = True
@@ -28,27 +27,10 @@ class Seq:
             i += 1
         return valid
 
-
-    def valid_seq(self):
-        valid = True
-        i = 0
-        while i < len(self.strbases):
-            c = self.strbases[i]
-            if c != "A" and c != "C" and c != "T" and c != "G":
-                valid = False
-            i += 1
-        return valid
-
-
     def __str__(self):
-        """Method called when the object is being printed"""
-
-        # -- We just return the string with the sequence
         return self.strbases
 
     def len(self):
-        """Calculate the length of the sequence"""
-        result = 0
         if self.strbases == "ERROR" or self.strbases == "NULL":
             result = 0
         else:
@@ -107,20 +89,20 @@ class Seq:
         while not exit:
             filename = input("NAME OF THE FILE : ")
             try:
-                f = open("./sequences/" + filename + ".txt", "r")
+                f = open("./Genes/" + filename + ".txt", "r")
                 exit = True
                 return filename
             except FileNotFoundError:
                 print("file does not exist")
 
     def read_fasta(self, filename):
-        f = open("./sequences/" + filename + ".txt", "r").read()
+        f = open("./Genes/" + filename + ".txt", "r").read()
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
-        #this is a method not function so it is not neccessary to return something
-        # bc we are modifiying attributes of the class
+
+
 
     def base_count(self, seq):  # TERMINAR
-        seq = open("./sequences/" + seq + ".txt", "r").read()
+        seq = open("./Genes/" + seq + ".txt", "r").read()
         seq = seq[seq.find("\n") + 1:].replace("\n", "")
         let_a = 0
         let_c = 0
@@ -137,3 +119,12 @@ class Seq:
                 let_t += 1
         bases = {"A": let_a, "C": let_c, "G": let_g, "T": let_t}
         return bases
+
+#    def read_fasta(self, filename):
+       # from pathlib import Path
+        #file_contents = Path(filename).read_text()
+        #lines = file_contents.splitlines()
+       # body = lines[1:]
+        #self.strbases = ""
+       # for line in body:
+        #    self.strbases += 1

@@ -1,5 +1,5 @@
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
 
     def __init__(self, strbases="NULL"):
         self.strbases = strbases
@@ -78,18 +78,18 @@ class Seq:
         while not exit:
             filename = input("NAME OF THE FILE : ")
             try:
-                f = open("./sequences/" + filename + ".txt", "r")
+                f = open("./Genes/" + filename + ".txt", "r")
                 exit = True
                 return filename
             except FileNotFoundError:
                 print("file does not exist")
 
     def read_fasta(self, filename):
-        f = open("./sequences/" + filename + ".txt", "r").read()
+        f = open("./Genes/" + filename + ".txt", "r").read()
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
 
     def most_freq_base(self, seq):
-        f = open("./sequences/" + seq + ".txt", "r").read()
+        f = open("./Genes/" + seq + ".txt", "r").read()
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
         max_k = None
         max_v = 0

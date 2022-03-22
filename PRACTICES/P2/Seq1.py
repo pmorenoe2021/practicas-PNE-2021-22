@@ -1,5 +1,5 @@
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
 
     def __init__(self, strbases="NULL"):
         # Initialize the sequence with the value
@@ -101,20 +101,20 @@ class Seq:
         while not exit:
             filename = input("NAME OF THE FILE : ")
             try:
-                f = open("./sequences/" + filename + ".txt", "r")
+                f = open("./Genes/" + filename + ".txt", "r")
                 exit = True
                 return filename
             except FileNotFoundError:
                 print("file does not exist")
 
     def read_fasta(self, filename):
-        f = open("./sequences/" + filename + ".txt", "r").read()
+        f = open("./Genes/" + filename + ".txt", "r").read()
         self.strbases = seq = f[f.find("\n"):].replace("\n", "")
         # this is a method not function so it is not neccessary to return something
         # bc we are modifiying attributes of the class
 
     def base_count(self, seq):  # TERMINAR
-        seq = open("./sequences/" + seq + ".txt", "r").read()
+        seq = open("./Genes/" + seq + ".txt", "r").read()
         seq = seq[seq.find("\n") + 1:].replace("\n", "")
         let_a = 0
         let_c = 0

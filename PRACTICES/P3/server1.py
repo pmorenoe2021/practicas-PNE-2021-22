@@ -1,21 +1,16 @@
 import socket
 import termcolor
 
-# Configure the Server's IP and PORT
+
 PORT = 8000
 IP = "127.0.0.1" # or "localhost o mismo
 
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-# -- Step 2: Bind the socket to server's IP and PORT
 ls.bind((IP, PORT))
-
-# -- Step 3: Configure the socket for listening
 ls.listen()
 
 print("Seq server configured!")
 while True:
-    # -- Waits for a client to connect
     print("Waiting for clients .....")
 
     try:
@@ -25,13 +20,9 @@ while True:
     except KeyboardInterrupt:
         print("Server stopped by the user")
 
-        # -- Close the listenning socket
         ls.close()
-
-        # -- Exit!
         exit()
 
-    # -- Execute this part if there are no errors
     else:
         print("A client has connected to the server!")
         # -- Read the message from the client

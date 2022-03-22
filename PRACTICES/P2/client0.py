@@ -1,9 +1,8 @@
-#run the server before the client
-import socket
+
 class Client:
     def __init__(self, ip, port):
         self.ip = "127.0.0.1"
-        self.port = 8000
+        self.port = 8080
 
     def ping(self):
         print("OK")
@@ -37,14 +36,14 @@ class Client:
         while not exit:
             filename = input("NAME OF THE FILE : ")
             try:
-                f = open("./sequences/" + filename + ".txt", "r")
+                f = open("./Genes/" + filename + ".txt", "r")
                 exit = True
                 return filename
             except FileNotFoundError:
                 print("file does not exist")
 
     def get_gene(self, filename):
-        f = open("./sequences/" + filename + ".txt", "r").read()
+        f = open("./Genes/" + filename + ".txt", "r").read()
         gene = f[f.find("\n"):].replace("\n", "")
         return gene
 

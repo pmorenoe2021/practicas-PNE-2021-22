@@ -1,5 +1,5 @@
 class Seq:
-    """A class for representing sequences"""
+    """A class for representing Genes"""
 
     def __init__(self, strbases="NULL"):
         # Initialize the sequence with the value
@@ -96,25 +96,17 @@ class Seq:
 
         return comp
 
-    def valid_filename(self):
-        exit = False
-        while not exit:
-            filename = input("NAME OF THE FILE : ")
-            try:
-                f = open("./sequences/" + filename + ".txt", "r")
-                exit = True
-                return filename
-            except FileNotFoundError:
-                print("file does not exist")
-
     def read_fasta(self, filename):
-        f = open("./sequences/" + filename + ".txt", "r").read()
-        self.strbases = seq = f[f.find("\n"):].replace("\n", "")
-        # this is a method not function so it is not neccessary to return something
-        # bc we are modifiying attributes of the class
+        from pathlib import Path
+        file_contents = Path(filename).read_text()
+        lines = file_contents.splitlines()
+        body = lines[1:]
+        self.strbases = ""
+        for line in body:
+            self.strbases += line
 
     def base_count(self, seq):  # TERMINAR
-        seq = open("./sequences/" + seq + ".txt", "r").read()
+        seq = open("./Genes/" + seq + ".txt", "r").read()
         seq = seq[seq.find("\n") + 1:].replace("\n", "")
         let_a = 0
         let_c = 0
@@ -131,3 +123,12 @@ class Seq:
                 let_t += 1
         bases = {"A": let_a, "C": let_c, "G": let_g, "T": let_t}
         return bases
+
+    def info(self):
+        result = f"Sequence: {self.bases}\n"
+        result  += f"Total length :{self.len()}\n"
+        for base, count in self.count().items():
+            result += f"{base}:{count}({((count * 100) / self.len()):.1f}% )"
+        return result
+
+

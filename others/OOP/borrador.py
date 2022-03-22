@@ -12,7 +12,7 @@ def seq_read_fasta(self, filename):  # 3
         sequence += line
     return sequence
 
-    FOLDER = "./sequences/"
+    FOLDER = "./Genes/"
     filename = input("Enter the name of the file: ")
     s = Seq()
     sequence = Seq.seq_read_fasta(FOLDER + filename)
