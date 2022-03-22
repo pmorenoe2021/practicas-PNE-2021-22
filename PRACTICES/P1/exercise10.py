@@ -1,13 +1,17 @@
 from Seq1 import Seq
 print("-----| Practice 1, Exercise 10 |------")
-# -- Create a Null sequence
-l = ["U5", "ADA", "FRAT1", "RNU6_269P", "FXN"]
-for seq in l:
+
+GENES = ["U5", "ADA", "FRAT1"]
+for seq in GENES:
+    filename = seq + ".txt"
     s = Seq()
-    bases = s.base_count(seq)
-    biggest = bases["A"]
+    s.read_fasta(filename)
+    bases = s.seq_count()
+    most_freq = None
     for key, value in bases.items():
-        if value > biggest:
-            biggest = value
-            x = key
-    print("Gene", s, ": Most frequent Base:", x)
+        if most_freq:
+            if value > most_freq[1]:
+                most_freq = (key, value)
+        else:
+            most_freq = (key, value)
+    print(f"Gene {seq}: Most frequent Base: {most_freq}")
