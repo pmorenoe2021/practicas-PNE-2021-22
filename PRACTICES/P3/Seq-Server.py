@@ -41,7 +41,7 @@ try:
         elif command == "INFO":
             bases = slices[1]
             sequence = Seq(bases)
-            response = f" {sequence.info()}"
+            response = f"{sequence.info()}"
 
         elif command == "COMP":
             bases = slices[1]
@@ -55,9 +55,9 @@ try:
 
         elif command == "GENE":
             bases = slices[1]
-            sequence = Seq(bases)
+            sequence = Seq()
             filename = os.path.join("..","..", "Genes", f"{bases}.txt")
-            seq.read_fasta(filename)
+            sequence.read_fasta(filename)
             response = f" {sequence}\n"
 
         print(response)

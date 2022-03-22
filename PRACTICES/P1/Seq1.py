@@ -20,7 +20,7 @@ class Seq:
 
         elif Seq.valid_bases(bases):
             self.bases = bases
-            print("New seqquence created")
+            print("New sequence created")
         else:
             self.bases = "ERROR"
             print("Invalid sequence detected")
