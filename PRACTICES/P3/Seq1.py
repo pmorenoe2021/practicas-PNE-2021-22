@@ -74,7 +74,7 @@ class Seq:
             result += f"{base}:{count}({((count * 100) / self.len()):.1f}% )"
         return result
 
-    def add(self): #ACTGA
+    def add(self):
         if self.strbases == "NULL" or self.strbases == "ERROR":
             return f"We could not multiply the bases since the sequence is not correct"
 
