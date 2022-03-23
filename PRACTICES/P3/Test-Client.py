@@ -2,7 +2,7 @@ from seq_client import Client
 
 IP = "localhost"
 PORT = 8080
-BASES = "ACCTTGG"
+BASES = "ACGTACGT"
 GENES = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
 
 c = Client(IP, PORT)
@@ -29,4 +29,6 @@ print()
 for gene in GENES:
     c.debug_talk(f"GENE {gene}")
     print()
+
+c.debug_talk(f"MULT {BASES}")
 

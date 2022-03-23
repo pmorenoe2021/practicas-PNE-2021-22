@@ -58,7 +58,6 @@ class Seq:
         if self.strbases == "NULL" or self.strbases == "ERROR":
             return self.strbases
 
-
     def read_fasta(self, filename):
         from pathlib import Path
         file_contents = Path(filename).read_text()
@@ -68,10 +67,25 @@ class Seq:
         for line in body:
             self.strbases += line
 
-
     def info(self):
         result = f"Sequence: {self.strbases}\n"
         result += f"Total length :{self.len()}\n"
         for base, count in self.seq_count().items():
             result += f"{base}:{count}({((count * 100) / self.len()):.1f}% )"
         return result
+
+    def add(self): #ACTGA
+        if self.strbases == "NULL" or self.strbases == "ERROR":
+            return f"We could not multiply the bases since the sequence is not correct"
+
+        else:
+            values = {"A": 2, "C": -1, "G": 3, "T": 5}
+            result = 1
+            for base in self.strbases:
+                for key, val in values.items():
+                    if base == key:
+                        result = result * values[key]
+
+        return result
+
+

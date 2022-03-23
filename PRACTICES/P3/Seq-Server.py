@@ -60,6 +60,12 @@ try:
             sequence.read_fasta(filename)
             response = f" {sequence}\n"
 
+        elif command == "MULT":
+            bases = slices[1]
+            sequence = Seq(bases)
+            response = f" {sequence.add()}\n"
+
+
         print(response)
         response_bytes = str.encode(response)
         client_socket.send(response_bytes)
