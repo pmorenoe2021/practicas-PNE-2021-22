@@ -21,8 +21,20 @@ def process_client(client_socket):  # -- Receive the request message
 # RESPUESTA HTTP(necesita formato http)
 
     status_line = "HTTP/1.1 200 OK\n"  # We respond that everything is ok (200 code)
-    body = "Hello from my first web server!\n"
-    header = "Content-Type: text/plain\n"  # Content-Type:serv indica a cliente formato dl cuerpo d respuesta
+    body = """
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Green server</title>
+          </head>
+          <body style="background-color: lightgreen;">
+            <h1>GREEN SERVER</h1>
+            <p>I am the Green Server! :-)</p>
+          </body>
+        </html>
+        """
+    header = "Content-Type: text/html\n"  # Content-Type:serv indica a cliente formato dl cuerpo d respuesta
     header += f"Content-Length: {len(body)}\n"  # Content-Length: longitud contenido
     response_msg = status_line + header + "\n" + body  # -- Build the message by joining together all the parts
     response_bytes = response_msg.encode()
@@ -48,7 +60,3 @@ def process_client(client_socket):  # -- Receive the request message
     except KeyboardInterrupt:
         print("Server Stopped!")
         server_socket.close()
-
-    # 500. servidor falla, no existe esta petado
-    #200. estatodo bien con el servidor
-    #status: informacion en formato texto
