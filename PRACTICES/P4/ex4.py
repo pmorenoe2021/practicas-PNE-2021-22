@@ -1,6 +1,6 @@
 import socket
 import termcolor
-from Pathlib import Path
+from pathlib import Path
 
 IP = "127.0.0.1"
 PORT = 8080
@@ -20,14 +20,28 @@ def process_client(client_socket):  # -- Receive the request message
     termcolor.cprint(req_line, "green")
 
 # RESPUESTA HTTP(necesita formato http)
+    body = ""
     if path == "/info/ADENINE":
-        status_line = "HTTP/1.1 200 OK\n"  # We respond that everything is ok (200 code)
         body = Path("ADENINE.html").read_text()
-        header = "Content-Type: text/html\n"  # Content-Type:serv indica a cliente formato dl cuerpo d respuesta
-        header += f"Content-Length: {len(body)}\n"  # Content-Length: longitud contenido
-        response_msg = status_line + header + "\n" + body  # -- Build the message by joining together all the parts
-        response_bytes = response_msg.encode()
-        client_socket.send(response_bytes)
+    elif path == "/info/C":
+        body = Path("C.html").read_text()
+    elif path == "/info/G":
+        body = Path("G.html").read_text()
+    elif path == "/info/T":
+        body = Path("T.html").read_text()
+    #  OTRA MANERA MAS SIMPLE
+        #  if path.startswith("/info/"): #path /info/C
+        #  slices = path.split("/") # slices = ["", "info",""C"]
+        #  resource = slices[2]
+        #  body = Path(f"{resource}.html").read_text()
+
+    status_line = "HTTP/1.1 200 OK\n"  # We respond that everything is ok (200 code)
+    header = "Content-Type: text/html\n"  # Content-Type:serv indica a cliente formato dl cuerpo d respuesta
+    header += f"Content-Length: {len(body)}\n"  # Content-Length: longitud contenido
+    response_msg = status_line + header + "\n" + body  # -- Build the message by joining together all the parts
+    response_bytes = response_msg.encode()
+    client_socket.send(response_bytes)
+
 
 
 #MAIN PROG
