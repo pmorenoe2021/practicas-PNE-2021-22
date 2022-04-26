@@ -34,7 +34,7 @@ def process_client(client_socket):  # -- Receive the request message
           </body>
         </html>
         """
-    header = "Content-Type: text/html\n"  # Content-Type:serv indica a cliente formato dl cuerpo d respuesta
+    header = "Content-Type: text/plain\n"  # Content-Type:serv indica a cliente formato dl cuerpo d respuesta
     header += f"Content-Length: {len(body)}\n"  # Content-Length: longitud contenido
     response_msg = status_line + header + "\n" + body  # -- Build the message by joining together all the parts
     response_bytes = response_msg.encode()

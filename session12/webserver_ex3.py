@@ -12,8 +12,9 @@ def process_client(client_socket):  # -- Receive the request message
     lines = req.splitlines()  # -- Split the request messages into lines
     req_line = lines[0]  # -- The request line is the first
     slices = req_line.split(" ")  # slices = ["GET", "/directory/other/file.html", "HTTP/1.0"]
-    method = slices[0] # nos da el GET
+    method = slices[0]  # nos da el GET
     path = slices[1]
+
     version = slices[2]
     print("Request line: ", end="")
     termcolor.cprint(req_line, "green")
