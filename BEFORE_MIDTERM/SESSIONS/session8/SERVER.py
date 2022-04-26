@@ -17,7 +17,7 @@ try:
     #         # accept connecuests before refusing outside connections
     serversocket.listen(MAX_OPEN_REQUESTS)
 
-    while True:tions from outside
+    while True:
         print("Waiting for connections at {}, {} ".format(IP, PORT))
         (clientsocket, address) = serversocket.accept()
 
