@@ -18,7 +18,7 @@ def process_client(client_socket):  # -- Receive the request message
     print("Request line: ", end="")
     termcolor.cprint(req_line, "green")
 
-# RESPUESTA HTTP(necesita formato http)
+# RESPUESTA HTTP
 
     status_line = "HTTP/1.1 200 OK\n"  # We respond that everything is ok (200 code)
     body = "Hello from my first web server!\n"
@@ -29,25 +29,24 @@ def process_client(client_socket):  # -- Receive the request message
     client_socket.send(response_bytes)
 
 
-#MAIN PROG
-    server_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)  # create several servers running on the smae port
+server_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)  # create several servers running on the smae port
 
-    server_socket.bind((IP, PORT))  # -- Setup up the socket's IP and PORT
-    server_socket.listen()
+server_socket.bind((IP, PORT))  # -- Setup up the socket's IP and PORT
+server_socket.listen()
 
-    print("SEQ Server configured!")
+print("SEQ Server configured!")
 
-    try:
-        while True:
-            print("Waiting for clients....")
-            (client_socket, client_ip_port) = server_socket.accept()
-            process_client(client_socket)  # Service the client
-            client_socket.close()  # -- Close the socket
+try:
+    while True:
+        print("Waiting for clients....")
+        (client_socket, client_ip_port) = server_socket.accept()
+        process_client(client_socket)  # Service the client
+        client_socket.close()  # -- Close the socket
 
-    except KeyboardInterrupt:
-        print("Server Stopped!")
-        server_socket.close()
+except KeyboardInterrupt:
+    print("Server Stopped!")
+    server_socket.close()
 
     # 500. servidor falla, no existe esta petado
     #200. estatodo bien con el servidor
