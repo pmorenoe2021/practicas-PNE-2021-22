@@ -1,5 +1,5 @@
 import Seq0
-l = ["U5", "ADA", "FRAT1", "RNU6_269P", "FXN"]
+l = ["U5", "ADA", "FRAT1", "RNU6_269P", "FXN.txt"]
 for s in l:
     bases = Seq0.base_count(s)
     biggest = bases["A"]

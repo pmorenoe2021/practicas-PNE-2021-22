@@ -42,7 +42,7 @@ while True:
 
         elif cmd == "GET":###
             arg = spl_cmd[1]
-            l = ["U5", "ADA", "FRAT1", "RNU6_269P", "FXN"]
+            l = ["U5", "ADA", "FRAT1", "RNU6_269P", "FXN.txt"]
             if int(arg) < 5:
                 print(l[arg])
             else:

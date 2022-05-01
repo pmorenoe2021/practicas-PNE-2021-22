@@ -3,7 +3,7 @@ from seq_client import Client
 IP = "localhost"
 PORT = 8080
 BASES = "ACGTACGT"
-GENES = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
+GENES = ["U5", "ADA", "FRAT1", "FXN.txt", "RNU6_269P"]
 
 c = Client(IP, PORT)
 print(c)

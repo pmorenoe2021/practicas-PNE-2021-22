@@ -11,7 +11,7 @@ PORT = 8000
 
 c = Client(IP, PORT)
 
-seqs_l = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
+seqs_l = ["U5", "ADA", "FRAT1", "FXN.txt", "RNU6_269P"]
 for gene in seqs_l:
     s = Seq()
     s.read_fasta(f"{gene}")
