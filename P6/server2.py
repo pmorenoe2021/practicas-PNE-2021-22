@@ -34,7 +34,8 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         if path == "/":
             context = {'n_sequences': len(SEQUENCES), 'genes': GENES}
             contents = read_html_file("index.html").render(context=context)
-            self.send_response(200)  # Comment
+            self.send_response(200)
+
         elif path == "/ping":
             contents = read_html_file(path[1:] + ".html").render()
             self.send_response(200)
@@ -71,13 +72,7 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                     contents = read_html_file(parsed_url.path[1:] + ".html"). \
                         render(context={'sequence': sequence, 'op': op, 'result': sequence.reverse()})
                 self.send_response(200)
-            else:
-                contents = Path(HTML_FOLDER + "error.html").read_text()
-                self.send_response(404)
 
-        else:
-            contents = Path(HTML_FOLDER + "error.html").read_text()
-            self.send_response(404)
 
         contents_bytes = contents.encode()
         self.send_header('Content-Type', 'text/html')

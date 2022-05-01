@@ -1,29 +1,33 @@
-import json
+
 import http.client
+import json
+import termcolor
 
-server = 'rest.ensembl.org'
-endpoint = '/info/ping'
-params = '?content-type=application/json'
-url = server + endpoint + params
 
+SERVER = "rest.ensembl.org"
+ENDPOINT = "/info/ping"
+PARAMS = "?content-type=application/json"
+URL = SERVER + ENDPOINT + PARAMS
+
+print(f"Server: {SERVER}")
+print(f"URL: {URL}")
+
+# Connect with the server
+conn = http.client.HTTPConnection(SERVER)
+
+try:
+    conn.request("GET", "/listusers")
+except ConnectionRefusedError:
+    print("ERROR! Cannot connect to the Server")
+    exit()
+
+# -- Read the response message from the server
+r1 = conn.getresponse()
+print(f"Response received!: {r1.status} {r1.reason}\n")
+data1 = r1.read().decode("utf-8")
+response = json.loads(data1)
+print(f"Response received:{response} ")
 print()
-print(f"Server: {server}")
-print(f"URL: {url}")
 
-conn = http.client.HTTPConnection(server)
-
-Handler = TestHandler
-
-# -- Open the socket server
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-
-    print("Serving at PORT", PORT)
-
-    # -- Main loop: Attend the client. Whenever there is a new
-    # -- clint, the handler is called
-    try:
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        print("")
-        print("Stoped by the user")
-        httpd.server_close()
+if response['ping'] == 1:
+    print("PING OK! The data base is running")

@@ -15,7 +15,7 @@
 
     <form action="/get">
          Get a sequence. Select a sequence number:
-        <select name="n_sequence">
+        <select name="sequence_n">
             {% for n in range(0, context.n_sequences) %}
             <option value={{n}}>{{n}}</option>
             {% endfor %}
@@ -34,6 +34,8 @@
     </form>
     <form action="/operation">
         Sequence: <input type="text" name="sequence">
+        Info: <input type="radio" name="operation" value="info">
+        Comp: <input type="radio" name="operation" value="comp">
         Rev: <input type="radio" name="operation" value="rev">
         <input type="submit" value="OPERATE">
     </form>
