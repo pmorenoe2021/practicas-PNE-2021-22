@@ -29,7 +29,7 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         parsed_url = urlparse(self.path)  # path = url
         path = parsed_url.path
         params = parse_qs(parsed_url.query)
-        print(path, "PARAMETROSSS", params)
+        print(path, "PARAMETROS", params)
 
         if path == "/":
             context = {'n_sequences': len(SEQUENCES), 'genes': GENES}
@@ -72,13 +72,13 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                     sequence = Seq(bases)
 
                     if op == "info":
-                        contents = read_html_file(parsed_url.path[1:] + ".html"). \
+                        contents = read_html_file(path[1:] + ".html"). \
                             render(context={'sequence': sequence, 'op': op, 'result': sequence.info()})
                     elif op == "comp":
-                        contents = read_html_file(parsed_url.path[1:] + ".html"). \
+                        contents = read_html_file(path[1:] + ".html"). \
                             render(context={'sequence': sequence, 'op': op, 'result': sequence.complement()})
                     else:  # elif op == "rev":
-                        contents = read_html_file(parsed_url.path[1:] + ".html"). \
+                        contents = read_html_file(path[1:] + ".html"). \
                             render(context={'sequence': sequence, 'op': op, 'result': sequence.reverse()})
                     self.send_response(200)
 
