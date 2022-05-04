@@ -68,7 +68,7 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
                 elif op == "comp":
                     contents = read_html_file(parsed_url.path[1:] + ".html"). \
                         render(context={'sequence': sequence, 'op': op, 'result': sequence.complement()})
-                else:  # elif op == "rev":
+                else:  #op == "rev":
                     contents = read_html_file(parsed_url.path[1:] + ".html"). \
                         render(context={'sequence': sequence, 'op': op, 'result': sequence.reverse()})
                 self.send_response(200)

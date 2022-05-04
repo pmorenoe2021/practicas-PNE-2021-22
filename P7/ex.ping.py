@@ -1,33 +1,33 @@
-
 import http.client
+from http import HTTPStatus
 import json
-import termcolor
-
 
 SERVER = "rest.ensembl.org"
-ENDPOINT = "/info/ping"
-PARAMS = "?content-type=application/json"
-URL = SERVER + ENDPOINT + PARAMS
-
-print(f"Server: {SERVER}")
-print(f"URL: {URL}")
+PORT = 80
+RESOURCE = "/info/ping?content-type=application/json"
 
 # Connect with the server
-conn = http.client.HTTPConnection(SERVER)
+conn = http.client.HTTPConnection(SERVER, PORT)
 
 try:
-    conn.request("GET", "/listusers")
+    conn.request("GET", RESOURCE)
 except ConnectionRefusedError:
     print("ERROR! Cannot connect to the Server")
     exit()
 
 # -- Read the response message from the server
-r1 = conn.getresponse()
-print(f"Response received!: {r1.status} {r1.reason}\n")
-data1 = r1.read().decode("utf-8")
-response = json.loads(data1)
-print(f"Response received:{response} ")
-print()
+response = conn.getresponse()
 
-if response['ping'] == 1:
-    print("PING OK! The data base is running")
+print(response)
+print(f"Server: {SERVER}")
+print(f"URL: {SERVER}{RESOURCE}")
+
+
+if response.status == HTTPStatus.OK:
+    print(f"Response received: {response.status}{response.reason}")
+    print()
+
+    raw_data = response.read().decode("utf-8")
+    ping = json.loads(raw_data)['ping']
+    if ping == 1:
+        print("PING OK! The data base is running")
