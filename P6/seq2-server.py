@@ -29,7 +29,7 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         parsed_url = urlparse(self.path)  # path = url
         path = parsed_url.path
         params = parse_qs(parsed_url.query)
-        print(path, params)
+        print(path, "PARAMETROSSS", params)
 
         if path == "/":
             context = {'n_sequences': len(SEQUENCES), 'genes': GENES}
@@ -42,10 +42,10 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path == "/get":
             try:
-                sequence_number = int(params['sequence_number'][0])
-                sequence = Seq(SEQUENCES[sequence_number])
+                sequence_n = int(params['sequence_n'][0])
+                sequence = Seq(SEQUENCES[sequence_n])
                 contents = read_html_file(path[1:] + ".html").\
-                    render(context={'sequence_number': sequence_number, 'sequence': sequence})
+                    render(context={'sequence_number': sequence_n, 'sequence': sequence})
                 self.send_response(200)
             except (KeyError, IndexError, ValueError):
                 contents = Path(HTML_FOLDER + "error.html").read_text()
@@ -66,8 +66,8 @@ class MyHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path == "/operation":
             try:
-                bases = params['bases'][0]  # bases = "ATCG"
-                op = params['op'][0]
+                bases = params['sequence'][0]  # bases = "ATCG"
+                op = params['operation'][0]
                 if op in ["info", "comp", "rev"]:
                     sequence = Seq(bases)
 
