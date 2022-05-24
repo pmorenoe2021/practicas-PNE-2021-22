@@ -54,7 +54,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     try:
                         limit = int(parameters['limit'][0])
                         status, contents = ut.list_species(limit)
-                    except (KeyError, IndexError, ValueError):  # se puede poner Exception, de manera general
+                    except (KeyError, IndexError, ValueError):
                         error = True
                 else:  # si me dAN mas de un parametro
                     error = True
@@ -72,7 +72,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         error = True
                 else:
                     error = True
+
      #  medium level
+
             elif endpoint == "/geneSeq":
                 if len(parameters) == 1:
                     try:

@@ -57,7 +57,7 @@ def karyotype(specie):
     status = OK
     if response.status == OK:
         data = json.loads(response.read().decode("utf-8"))
-        print(data)
+        #print(data)
         try:
             karyotype = data['karyotype']
 
