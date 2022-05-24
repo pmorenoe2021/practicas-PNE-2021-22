@@ -12,10 +12,10 @@ def read_template_html_file(filename):
 
 SERVER = 'rest.ensembl.org'
 OK = 200
-BAD_REQUEST = 400
+ERROR = 400 # SI HAY ALGUN ERROR EL ESTATUS SERA ESTE
 
 
-def list_species(limit=None):
+def list_species(limit=None): # el parametro es opcional x lo que dejamos None x defecto
     endpoint = '/info/species'
     params = '?content-type=application/json'  #almacena los parametros de la peticion(guarda el cntenido en forma json)
     url = endpoint + params
@@ -28,7 +28,7 @@ def list_species(limit=None):
         raw_json = response.read()  #json_bytes
         str_json = raw_json.decode("utf-8")
         data = json.loads(str_json)  # nos transforma la info en string de json a un diccionario en python
-        print(data)
+        #print(data)
         try:
             species = data['species']
 
@@ -38,10 +38,10 @@ def list_species(limit=None):
                 "limit": limit}
             contents = read_template_html_file("./html/species.html").render(context=context)
         except KeyError:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status = ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
 
@@ -66,10 +66,10 @@ def karyotype(specie):
             }
             contents = read_template_html_file("./html/karyotype.html").render(context=context)
         except KeyError:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status = ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
 
@@ -98,10 +98,10 @@ def chromosome_length(specie, chromo):
             }
             contents = read_template_html_file("./html/chromosome_length.html").render(context=context)
         except KeyError:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status = ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
 
@@ -149,13 +149,13 @@ def gene_seq(gene):
                 }
                 contents = read_template_html_file("./html/gene_seq.html").render(context=context)
             except KeyError:
-                status = BAD_REQUEST
+                status = ERROR
                 contents = Path("./html/error.html").read_text()
         else:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status =ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
 
@@ -190,13 +190,13 @@ def gene_info(gene):
                 }
                 contents = read_template_html_file("./html/gene_info.html").render(context=context)
             except (KeyError, IndexError):
-                status = BAD_REQUEST
+                status = ERROR
                 contents = Path("./html/error.html").read_text()
         else:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status = ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
 
@@ -223,13 +223,13 @@ def gene_calc(gene):
                 }
                 contents = read_template_html_file("./html/gene_calc.html").render(context=context)
             except KeyError:
-                status = BAD_REQUEST
+                status = ERROR
                 contents = Path("./html/error.html").read_text()
         else:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status = ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
 
@@ -252,10 +252,10 @@ def gene_list(chromo, start, end):
             }
             contents = read_template_html_file("./html/gene_list.html").render(context=context)
         except KeyError:
-            status = BAD_REQUEST
+            status = ERROR
             contents = Path("./html/error.html").read_text()
     else:
-        status = BAD_REQUEST
+        status = ERROR
         contents = Path("./html/error.html").read_text()
 
     return status, contents

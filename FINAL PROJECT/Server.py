@@ -12,7 +12,7 @@ socketserver.TCPServer.allow_reuse_address = True
 
 
 def handle_karyotype(parameters):
-    has_error = False
+    error = False
     contents = ""
     status = 400
     if len(parameters) == 1:
@@ -20,11 +20,11 @@ def handle_karyotype(parameters):
             specie = parameters['specie'][0]
             status, contents = ut.karyotype(specie)
         except (KeyError, IndexError):
-            has_error = True
+            error = True
     else:
-        has_error = True
+        error = True
 
-    return status, contents, has_error
+    return status, contents, error
 
 
 class TestHandler(http.server.BaseHTTPRequestHandler):
@@ -38,8 +38,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         print("Endpoint: ", endpoint)
         print("Parameters: ", parameters)
 
-        has_error = False  # si hay error cambiar a true
-        contents = ""
+        error = False   # si hay error al acceder al servidor cambiar a true
+        contents = ""  # conbtine el cuerpo de lz respuesta al cliente
         status = 400
         if endpoint in ENDPOINTS:  # comprobando si la peticion es valida
 
@@ -55,12 +55,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         limit = int(parameters['limit'][0])
                         status, contents = ut.list_species(limit)
                     except (KeyError, IndexError, ValueError):  # se puede poner Exception, de manera general
-                        has_error = True
+                        error = True
                 else:  # si me dAN mas de un parametro
-                    has_error = True
+                    error = True
 
             elif endpoint == "/karyotype": # calculado en la funcion de arriba
-                status, contents, has_error = handle_karyotype(parameters)
+                status, contents, error = handle_karyotype(parameters)
 
             elif endpoint == "/chromosomeLength":
                 if len(parameters) == 2:
@@ -69,9 +69,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         chromo = parameters['chromo'][0]
                         status, contents = ut.chromosome_length(specie, chromo)
                     except (KeyError, IndexError):
-                        has_error = True
+                        error = True
                 else:
-                    has_error = True
+                    error = True
      #  medium level
             elif endpoint == "/geneSeq":
                 if len(parameters) == 1:
@@ -79,9 +79,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         gene = parameters['gene'][0]
                         status, contents = ut.gene_seq(gene)
                     except (KeyError, IndexError):
-                        has_error = True
+                        error = True
                 else:
-                    has_error = True
+                    error = True
 
             elif endpoint == "/geneInfo":
                 if len(parameters) == 1:
@@ -89,9 +89,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         gene = parameters['gene'][0]
                         status, contents = ut.gene_info(gene)
                     except (KeyError, IndexError):
-                        has_error = True
+                        error = True
                 else:
-                    has_error = True
+                    error = True
 
             elif endpoint == "/geneCalc":
                 if len(parameters) == 1:
@@ -99,9 +99,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         gene = parameters['gene'][0]
                         status, contents = ut.gene_calc(gene)
                     except (KeyError, IndexError):
-                        has_error = True
+                        error = True
                 else:
-                    has_error = True
+                    error = True
 
             elif endpoint == "/geneList":
                 if len(parameters) == 3:
@@ -111,13 +111,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         end = int(parameters['end'][0])  # "
                         status, contents = ut.gene_list(chromo, start, end)
                     except (KeyError, ValueError, IndexError):
-                        has_error = True
+                        error = True
                 else:
-                    has_error = True
+                    error = True
         else:
-            has_error = True
+            error = True
 
-        if has_error:  # si no hay ningun error rellenamos con lo siguiente
+        if error:  # si no hay ningun error rellenamos con lo siguiente
             contents = Path("./html/error.html").read_text()
 
         self.send_response(status)
