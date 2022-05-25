@@ -55,7 +55,7 @@ def karyotype(specie):
     conn.request("GET", url)
     response = conn.getresponse()
     status = OK
-    if response.status == OK:
+    if response.status == HTTPStatus.OK:
         data = json.loads(response.read().decode("utf-8"))
         #print(data)
         try:
@@ -83,7 +83,7 @@ def chromosome_length(specie, chromo):
     conn.request("GET", url)
     response = conn.getresponse()
     status = OK
-    if response.status == OK:
+    if response.status == HTTPStatus.OK:
         data = json.loads(response.read().decode("utf-8"))
         try:
             top_level_region = data['top_level_region']
@@ -116,7 +116,7 @@ def get_id(gene):
     response = conn.getresponse()
     ok = True
     id = None
-    if response.status == OK:
+    if response.status == HTTPStatus.OK:
         data = json.loads(response.read().decode("utf-8"))
         try:
             id = data['data'][0]['id']
@@ -130,7 +130,7 @@ def get_id(gene):
 def gene_seq(gene):
     ok, id = get_id(gene)
     if ok:
-        endpoint = '/sequence/id/'
+        endpoint = '/sequence/id/'  # nosd da la info del gen
         params = f'{id}?content-type=application/json'
         url = endpoint + params
 
@@ -138,8 +138,9 @@ def gene_seq(gene):
         conn.request("GET", url)
         response = conn.getresponse()
         status = OK
-        if response.status == OK:
+        if response.status == HTTPStatus.OK:
             data = json.loads(response.read().decode("utf-8"))
+            #print(data)
             try:
                 bases = data['seq']
 
@@ -171,7 +172,7 @@ def gene_info(gene):
         conn.request("GET", url)
         response = conn.getresponse()
         status = OK
-        if response.status == OK:
+        if response.status == HTTPStatus.OK:
             data = json.loads(response.read().decode("utf-8"))
             print(data)
             try:
@@ -212,8 +213,9 @@ def gene_calc(gene):
         conn.request("GET", url)
         response = conn.getresponse()
         status = OK
-        if response.status == OK:
+        if response.status == HTTPStatus.OK:
             data = json.loads(response.read().decode("utf-8"))
+            print(data)
             try:
                 bases = data['seq']
                 seq = Seq(bases)
@@ -243,7 +245,7 @@ def gene_list(chromo, start, end):
     conn.request("GET", url)
     response = conn.getresponse()
     status = OK
-    if response.status == OK:
+    if response.status == HTTPStatus.OK:
         data = json.loads(response.read().decode("utf-8"))
         print(data)
         try:

@@ -39,7 +39,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         print("Parameters: ", parameters)
 
         error = False   # si hay error al acceder al servidor cambiar a true
-        contents = ""  # conbtine el cuerpo de lz respuesta al cliente
+        contents = ""  # conbtine el cuerpo de la respuesta al cliente
         status = 400
         if endpoint in ENDPOINTS:  # comprobando si la peticion es valida
 
