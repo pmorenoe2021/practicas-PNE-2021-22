@@ -47,8 +47,8 @@ def list_species(limit=None): # el parametro es opcional x lo que dejamos None x
 
 
 def karyotype(specie):
-    endpoint = '/info/assembly/'
-    params = f'{specie}?content-type=application/json'
+    endpoint = '/info/assembly/'  # endpoint de ensembl al que le hago la peticion
+    params = f'{specie}?content-type=application/json'  # parametros de la peticion a ensembl
     url = endpoint + params
 
     conn = http.client.HTTPConnection(SERVER)
