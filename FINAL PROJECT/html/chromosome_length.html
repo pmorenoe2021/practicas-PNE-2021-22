@@ -5,6 +5,14 @@
     <title>Chromosome Length</title>
   </head>
   <body style="background: lightblue">
-    <p>The length of the chromosomes is: {{context.length}}</p>
+    <p>The length of these chromosomes is larger than: {{context.length}}</p>
+    <p>The names of the species are:</p>
+    <ul>
+    {% for specie in context.species: %}
+      {% if specie.len() > context.length: %}
+        <li>{{specie['assembly_name']}}</li>
+      {% endif %}
+    {% endfor %}
+    </ul>
   </body>
 </html>

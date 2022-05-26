@@ -74,27 +74,27 @@ def karyotype(specie):
     return status, contents
 
 
-def chromosome_length(specie, chromo):
-    endpoint = '/info/assembly/'
-    params = f'{specie}?content-type=application/json'
+def chromosome_length(length):
+    endpoint = '/info/species'
+    params = '?content-type=application/json'  # almacena los parametros de la peticion(guarda el cntenido en forma json)
     url = endpoint + params
 
-    conn = http.client.HTTPConnection(SERVER)
-    conn.request("GET", url)
+    conn = http.client.HTTPConnection(SERVER)  # se conecta con el ensembl
+    conn.request("GET", url)  # especifica el tipo de peticion
     response = conn.getresponse()
     status = OK
     if response.status == HTTPStatus.OK:
-        data = json.loads(response.read().decode("utf-8"))
+        raw_json = response.read()  # json_bytes
+        str_json = raw_json.decode("utf-8")
+        data = json.loads(str_json)  # nos transforma la info en string de json a un diccionario en python
+        print(data)
         try:
-            top_level_region = data['top_level_region']
-            length = 0
-            for chromosome in top_level_region:
-                if chromosome['name'] == chromo:
-                    length = chromosome['length']
-                    break
+            species = data["species"]
+            chromosome_name = data[0]['assembly_name']
 
             context = {
                 "length": length,
+                "chromosome_name": chromosome_name
             }
             contents = read_template_html_file("./html/chromosome_length.html").render(context=context)
         except KeyError:
@@ -104,7 +104,6 @@ def chromosome_length(specie, chromo):
         status = ERROR
         contents = Path("./html/error.html").read_text()
     return status, contents
-
 
 def get_id(gene):
     endpoint = '/homology/symbol/human/'

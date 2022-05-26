@@ -65,11 +65,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             elif endpoint == "/chromosomeLength":
                 if len(parameters) == 1:
                     try:
-                        limit = int(parameters['length'][0])
-                        status, contents = ut.list_species(limit)
+                        length = int(parameters['length'][0])
+                        status, contents = ut.chromosome_length(length)
                     except (KeyError, IndexError, ValueError):
                         error = True
-                else:  # si me dAN mas de un parametro
+                else:
                     error = True
 
      #  medium level
